@@ -1,0 +1,21 @@
+[gd_scene load_steps=7 format=3 uid="uid://buuuesf2phgdr"]
+
+[ext_resource type="Script" uid="uid://dkx3l4jq783cu" path="res://addons/timchi_maze_generation/packed_mazes/packed_maze3d.gd" id="1_xhwin"]
+[ext_resource type="PackedScene" uid="uid://cfq68t6obqix0" path="res://addons/timchi_maze_generation/assets/packed_scenes/dead_end.tscn" id="2_xl7y2"]
+[ext_resource type="PackedScene" uid="uid://wdpi1l5bep55" path="res://addons/timchi_maze_generation/assets/packed_scenes/hallway.tscn" id="3_nn2pf"]
+[ext_resource type="PackedScene" uid="uid://b2gdv50v4qtgh" path="res://addons/timchi_maze_generation/assets/packed_scenes/corner.tscn" id="4_um0ts"]
+[ext_resource type="PackedScene" uid="uid://bpowduc7idkjn" path="res://addons/timchi_maze_generation/assets/packed_scenes/junction.tscn" id="5_84brd"]
+[ext_resource type="PackedScene" uid="uid://chot8b6cmfvc2" path="res://addons/timchi_maze_generation/assets/packed_scenes/allway.tscn" id="6_tqwxs"]
+
+[node name="PackedMaze3D" type="Node3D"]
+script = ExtResource("1_xhwin")
+maze_width = 3
+maze_height = 3
+seed = 9
+dead_end_scenes = Array[PackedScene]([ExtResource("2_xl7y2")])
+hallway_scenes = Array[PackedScene]([ExtResource("3_nn2pf")])
+corner_scenes = Array[PackedScene]([ExtResource("4_um0ts")])
+junction_scenes = Array[PackedScene]([ExtResource("5_84brd")])
+all_way_scenes = Array[PackedScene]([ExtResource("6_tqwxs")])
+rotation_adjustment = 180
+metadata/_custom_type_script = "uid://dkx3l4jq783cu"

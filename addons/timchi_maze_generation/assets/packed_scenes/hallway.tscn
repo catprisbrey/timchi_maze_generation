@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://wdpi1l5bep55"]
+
+[ext_resource type="Texture2D" uid="uid://ipfooqil3u2g" path="res://addons/timchi_maze_generation/assets/basic_maze_WOODA.png" id="1_lhdhm"]
+[ext_resource type="Texture2D" uid="uid://ddduyoxnfnhse" path="res://addons/timchi_maze_generation/assets/basic_maze_REDBRICKS.png" id="2_gc8au"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1oxm7"]
+resource_name = "Floor"
+cull_mode = 2
+albedo_texture = ExtResource("1_lhdhm")
+roughness = 0.5
+uv1_offset = Vector3(0, -2, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k12o0"]
+resource_name = "Walls"
+cull_mode = 2
+albedo_texture = ExtResource("2_gc8au")
+roughness = 0.5
+uv1_offset = Vector3(0, -7, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wd6h1"]
+resource_name = "Walls"
+cull_mode = 2
+albedo_texture = ExtResource("2_gc8au")
+roughness = 0.5
+uv1_offset = Vector3(0, -7, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="Hallway" type="CSGCombiner3D"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(9, 1, 16)
+material = SubResource("StandardMaterial3D_1oxm7")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(9, 4, 16)
+material = SubResource("StandardMaterial3D_k12o0")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D2"]
+operation = 2
+size = Vector3(8, 4, 15)
+material = SubResource("StandardMaterial3D_wd6h1")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.30533218)
+operation = 2
+size = Vector3(4, 3, 18.972656)

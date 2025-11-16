@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://chot8b6cmfvc2"]
+
+[ext_resource type="Texture2D" uid="uid://ipfooqil3u2g" path="res://addons/timchi_maze_generation/assets/basic_maze_WOODA.png" id="1_bmwiu"]
+[ext_resource type="Texture2D" uid="uid://ddduyoxnfnhse" path="res://addons/timchi_maze_generation/assets/basic_maze_REDBRICKS.png" id="2_we4uw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4cci"]
+resource_name = "Floor"
+cull_mode = 2
+albedo_texture = ExtResource("1_bmwiu")
+roughness = 0.5
+uv1_offset = Vector3(0, -2, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ilvfh"]
+resource_name = "Walls"
+cull_mode = 2
+albedo_texture = ExtResource("2_we4uw")
+roughness = 0.5
+uv1_offset = Vector3(0, -7, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lguix"]
+resource_name = "Walls"
+cull_mode = 2
+albedo_texture = ExtResource("2_we4uw")
+roughness = 0.5
+uv1_offset = Vector3(0, -7, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="allway" type="CSGCombiner3D"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(16, 1, 16)
+material = SubResource("StandardMaterial3D_e4cci")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(16, 4, 16)
+material = SubResource("StandardMaterial3D_ilvfh")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D2"]
+operation = 2
+size = Vector3(15, 4, 15)
+material = SubResource("StandardMaterial3D_lguix")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.35123062)
+operation = 2
+size = Vector3(4, 3, 20.831055)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D2"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.5, 0)
+operation = 2
+size = Vector3(4, 3, 20.253906)
