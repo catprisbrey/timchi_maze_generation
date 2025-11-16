@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfq68t6obqix0"]
+
+[ext_resource type="Texture2D" uid="uid://ipfooqil3u2g" path="res://addons/timchi_maze_generation/assets/basic_maze_WOODA.png" id="1_7h4w5"]
+[ext_resource type="Texture2D" uid="uid://ddduyoxnfnhse" path="res://addons/timchi_maze_generation/assets/basic_maze_REDBRICKS.png" id="2_3j4vk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uh43i"]
+resource_name = "Floor"
+cull_mode = 2
+albedo_texture = ExtResource("1_7h4w5")
+roughness = 0.5
+uv1_offset = Vector3(0, -2, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6bho4"]
+resource_name = "Walls"
+cull_mode = 2
+albedo_texture = ExtResource("2_3j4vk")
+roughness = 0.5
+uv1_offset = Vector3(0, -7, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ye307"]
+resource_name = "Walls"
+cull_mode = 2
+albedo_texture = ExtResource("2_3j4vk")
+roughness = 0.5
+uv1_offset = Vector3(0, -7, 0)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="DeadEnd" type="CSGCombiner3D"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 1)
+size = Vector3(10, 1, 14)
+material = SubResource("StandardMaterial3D_uh43i")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1)
+size = Vector3(10, 4, 14)
+material = SubResource("StandardMaterial3D_6bho4")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D2"]
+operation = 2
+size = Vector3(9, 4, 13)
+material = SubResource("StandardMaterial3D_ye307")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 6.789263)
+operation = 2
+size = Vector3(4, 3, 2)
