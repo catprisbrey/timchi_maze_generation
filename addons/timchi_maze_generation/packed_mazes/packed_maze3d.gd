@@ -3,7 +3,6 @@
 class_name PackedMaze3D
 extends Node3D
 
-
 @export_group("Maze")
 @export var randomize_at_ready : bool = false
 @export_range(1, 100, 1, "or_greater") var maze_width := 4:
@@ -28,7 +27,7 @@ extends Node3D
 @export var all_way_scenes: Array[PackedScene] = []
 
 @export_group("Scene Settings")
-@export var cell_size := Vector3(16.0, 16.0, 16.0)  ## Size of each cell for positioning
+@export var cell_size := Vector3(2.0, 2.0, 2.0)  ## Size of each cell for positioning
 @export_range(0, 270, 90) var rotation_adjustment: int = 0
 @export var randomize_scene_selection := true  ## Pick random scene variant for each cell
 
@@ -38,22 +37,14 @@ var spawned_instances: Array[Node3D] = []
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func draw_maze():
-	if !Engine.is_editor_hint() && !randomize_at_ready:
-		return
 	maze = Maze.new(maze_width, maze_height, linearity, seed)
 	maze.generate_maze()
 	
 	# Initialize RNG with the same seed for consistent scene selection
 	rng.seed = seed
 	
-	if not has_node("Navigation") && generate_navmesh:
-		var nav_region = NavigationRegion3D.new()
-		nav_region.name = "Navigation"
-		nav_region.navigation_mesh = NavigationMesh.new()
-		nav_region.navigation_mesh.geometry_parsed_geometry_type = NavigationMesh.PARSED_GEOMETRY_STATIC_COLLIDERS
-		add_child(nav_region)
-		if Engine.is_editor_hint():
-			nav_region.owner = get_tree().edited_scene_root
+	if not has_node("Navigation"):
+		return
 	
 	clear_maze()
 	
@@ -108,8 +99,8 @@ func draw_maze():
 		await get_tree().process_frame
 		if has_node("Navigation"):
 			$Navigation.bake_navigation_mesh()
-	#elif has_node("Navigation"):
-		#$Navigation.navigation_mesh.clear()
+	elif has_node("Navigation"):
+		$Navigation.navigation_mesh.clear()
 
 func clear_maze():
 	# Remove all previously spawned instances
@@ -120,21 +111,19 @@ func clear_maze():
 
 func _ready():
 	# Create Navigation node if it doesn't exist
-	if not has_node("Navigation") && generate_navmesh:
+	if not has_node("Navigation"):
 		var nav_region = NavigationRegion3D.new()
 		nav_region.name = "Navigation"
 		nav_region.navigation_mesh = NavigationMesh.new()
-		nav_region.navigation_mesh.geometry_parsed_geometry_type = NavigationMesh.PARSED_GEOMETRY_STATIC_COLLIDERS
 		add_child(nav_region)
 		if Engine.is_editor_hint():
 			nav_region.owner = get_tree().edited_scene_root
 	
 	if randomize_at_ready:
 		randomize()
-		seed = randi_range(0,5000)
+		seed = randi_range(0,1000)
+	#else:
 		#draw_maze()
-	else:
-		draw_maze()
 	add_to_group("timchi_maze")
 
 func _exit_tree():

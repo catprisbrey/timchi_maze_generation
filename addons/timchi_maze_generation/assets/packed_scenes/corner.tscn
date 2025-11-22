@@ -34,12 +34,12 @@ uv1_world_triplanar = true
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -2)
 size = Vector3(16, 1, 12)
 material = SubResource("StandardMaterial3D_eb45d")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
 size = Vector3(16, 4, 12)
 material = SubResource("StandardMaterial3D_cbvxe")
 
@@ -49,11 +49,11 @@ size = Vector3(15, 4, 11)
 material = SubResource("StandardMaterial3D_4bmmj")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="CSGBox3D2"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8.471, -0.5, -2)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.5290003, -0.5, 2)
 operation = 2
 size = Vector3(4, 3, 2)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="CSGBox3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 5.697509)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -5.502491)
 operation = 2
 size = Vector3(4, 3, 2)

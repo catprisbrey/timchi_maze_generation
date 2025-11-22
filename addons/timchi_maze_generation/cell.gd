@@ -58,4 +58,3 @@ func get_rotation() -> float:
 		# Default, handles the allways with no rotation.
 		_: return deg_to_rad(0)
 	
-
